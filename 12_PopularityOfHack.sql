@@ -28,6 +28,7 @@ age                 int
 gender              varchar
 popularity          int
 
+*/
 
 select location, avg(popularity) as average_popularity
 from facebook_employees
