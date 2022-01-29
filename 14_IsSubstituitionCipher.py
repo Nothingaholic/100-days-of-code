@@ -21,8 +21,6 @@ solution(string1, string2) = false."""
 
 
 from collections import Counter
-import string
-
 
 def solution(string1, string2):
     map_string = zip(string1, string2)
