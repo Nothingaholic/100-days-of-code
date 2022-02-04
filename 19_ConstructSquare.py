@@ -1,3 +1,5 @@
+# CodeSignal
+
 """
 Given a string consisting of lowercase English letters, 
 find the largest square number which can be obtained 
