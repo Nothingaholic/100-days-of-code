@@ -1,5 +1,5 @@
 -- Stratascratch
--- Lyft Interview Questions
+-- Lyft Practice Questions
 /*
 
 Find the last time each bike was in use. 
@@ -9,8 +9,6 @@ Order the results by bikes that were most recently used.
 
 Table: dc_bikeshare_q1_2012
 
-
-fb_na_energy
 
 +-------------------+---------+
 | duration          | varchar |
