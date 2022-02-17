@@ -25,11 +25,20 @@ Note: Round the term frequency to 2 decimal points.
 """
 
 
-from pydoc import doc
-
-
 def term_frequency(sentences):
-    pass
+    word_split = sentences.split(" ")
+    tf_dict = {}
+
+    for w in word_split:
+        if w not in tf_dict:
+            tf_dict[w] = 0
+        tf_dict[w] += 1
+
+    print(tf_dict)
+    length = len(word_split)
+    for word in tf_dict:
+        tf_dict[word] = round(tf_dict[word]/ float(length),2)
+    return tf_dict
 
 
 if __name__ == "__main__":
