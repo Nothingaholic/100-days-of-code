@@ -1,4 +1,5 @@
 # InterviewQuery
+# medium
 """
 Write a function compute_deviation that takes in a list of dictionaries with a key and list of integers
 and returns a dictionary with the standard deviation of each list.
