@@ -12,14 +12,15 @@ ANd e2.firstname = 'Anthony'
 AND e2.lastname = 'Bow';
 
 /*
-Find all payments greater than $100,000 along with the associated customers who made the payments. 
-Sort them with the highest payment at the top. 
-Display paymentDate, amount, customerName. Use the payments table.
 
+Find all payments greater than $100,000 along with the associated customers who made the payments.
+Sort them with the highest payment at the top. Display paymentDate, amount, customerName. 
+Use the payments table.
 */
-
-SELECT p.paymentdate, p.amount, c.customername
-FROM customers c, payments p
-WHERE p.customernumber = c.customernumber 
+SELECT paymentdate, 
+			amount, 
+			c.customername
+from customers c, payments p
+WHERE c.customernumber = p.customernumber
 AND amount > 100000
-ORDER BY p.amount DESC;
+ORDER BY amount DESC;
