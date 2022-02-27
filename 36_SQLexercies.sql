@@ -3,6 +3,10 @@
 The resulting tuples should be of the form (order number, order date).
 */
 
+SELECT ordernumber, orderdate
+FROM customers c, orders o
+where c.customernumber = o.customernumber 
+AND customername = 'Mini Classics';
 
 
 /*
