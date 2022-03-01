@@ -7,12 +7,12 @@ FROM employees e, customers c
 WHERE c.salesrepemployeenumber = e.employeenumber
 GROUP BY employeenumber;
 
--- customer who does not have employee represent
+-- customer who have employee represent
 SELECT salesRepEmployeeNumber, COUNT(*)
 FROM customers
 GROUP BY salesRepEmployeeNumber;
 
--- use left join, print out employee who don't work with customers
+-- use left join, we can show all employee, including who present a customer
 SELECT employeenumber, count(*)
 FROM employees e
 LEFT JOIN customers c

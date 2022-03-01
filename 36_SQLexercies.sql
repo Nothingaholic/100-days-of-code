@@ -15,9 +15,9 @@ Foreign customers have a non-null country field whose value is not 'USA'.
  The result of your query should be a single number.
  */
  
-SELECT COUNT(*) as "number of product"
-FROM customers c, orders o
+SELECT COUNT(DISTINCT od.productcode) as "number of product"
+FROM customers c, orders o, orderdetails od
 WHERE c.customernumber = o.customernumber
 	AND c.customernumber not in (SELECT customernumber 
-									FROM customers
-									WHERE country = 'USA')
+					FROM customers
+					WHERE country = 'USA');

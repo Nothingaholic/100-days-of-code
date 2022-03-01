@@ -3,26 +3,18 @@
 Among the customers who have made orders, find those who have never bought a product priced more than $70.
 The results should be a list of customer names.
 */
-SELECT c.customername, od.priceeach, o.shippeddate
-FROM customers c, orders o, orderdetails od
-WHERE c.customernumber = o.customernumber
-AND o.ordernumber = od.ordernumber
-AND od.priceeach <= 70;
 
-
-SELECT customername
+SELECT DISTINCT customername, od.priceeach, o.shippeddate
 FROM customers c
 JOIN orders o ON c.customernumber = o.customernumber -- customers who made orders
-WHERE o.customernumber in ( SELECT c.customernumber
-			FROM customers c, orders o, orderdetails od, products p
-			WHERE c.customernumber = o.customernumber
-			AND o.ordernumber = od.ordernumber
-			AND od.productcode = p.productcode
-			AND buyprice NOT IN (SELECT buyprice
-							FROM products 
-							WHERE buyprice >= 70
-						 )
-						);
+WHERE o.customernumber NOT IN (SELECT c.customernumber
+								FROM customers c, orders o, orderdetails od, products p
+								WHERE c.customernumber = o.customernumber
+								AND o.ordernumber = od.ordernumber
+								AND od.productcode = p.productcode
+								AND buyprice > 70
+						 		);
+
                         
 /*
 10. Find the number of sales made by each employee, 
