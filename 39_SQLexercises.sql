@@ -10,7 +10,7 @@ Hint: the results are for each customer and for each product line,
 
 SELECT c.customername, 
 		pl.productline, 
-		COUNT(*) as "numberofproducts"
+		COUNT(pl.productline) as "numberofproducts"
 FROM customers c, orders o,
 	orderdetails od, products p, productlines pl
 WHERE c.customernumber = o.customernumber 
