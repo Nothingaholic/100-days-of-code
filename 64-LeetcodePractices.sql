@@ -61,16 +61,10 @@ WHERE department_id NOT IN (SELECT id
 ----------------------------------------------------------------------------------------
 -- NPV queries
 -- https://leetcode.com/problems/npv-queries/
+-- 91.84%
 
-
-
-# SELECT n.id, n.year, IFNULL(n.npv,0) as npv
-# FROM npv n
-# LEFT JOIN queries q
-# ON n.id = q.id
-# AND n.year = q.year
-# ORDER BY n.id
-
-select q.id, q.year, ifnull(n.npv,0) as NPV
-from queries q
-left join npv n on q.id = n.id and q.year = n.year
+SELECT q.id, q.year, IFNULL(n.npv, 0) as npv
+FROM queries q
+LEFT JOIN  npv n
+ON q.id = n.id
+AND q.year = n.year
