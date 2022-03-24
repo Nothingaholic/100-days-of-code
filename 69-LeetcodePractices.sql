@@ -95,4 +95,33 @@ log_id      row_index       log_id - row_index
 
 
 ----------------------------------------------------------------------------------------
---
+-- Apples & Oranges
+-- https://leetcode.com/problems/apples-oranges/
+
+-- using CTE
+-- 78.35%
+WITH apples AS (
+                SELECT * FROM sales
+                WHERE fruit='apples'),
+oranges AS ( 
+                SELECT * FROM sales
+                WHERE fruit='oranges')
+SELECT a.sale_date, a.sold_num - o.sold_num AS diff
+FROM apples a, oranges o
+WHERE a.sale_date = o.sale_date
+GROUP BY a.sale_date
+
+-- self join 
+-- 45.83%
+SELECT a.sale_date, a.sold_num - o.sold_num AS diff
+FROM sales a, sales o
+WHERE a.sale_date = o.sale_date
+AND o.fruit = 'oranges' and  a.fruit = 'apples'
+GROUP BY a.sale_date
+
+-- using CASE 
+-- 97.51%
+SELECT sale_date,
+        SUM(CASE WHEN fruit = 'apples' THEN sold_num ELSE -sold_num END) AS diff
+FROM sales
+GROUP BY sale_date
