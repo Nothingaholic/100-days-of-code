@@ -58,8 +58,65 @@ LEFT JOIN team_points p
 ON t.team_id = p.team_id
 ORDER BY num_points DESC, t.team_id
 ----------------------------------------------------------------------------------------
--- 
+-- Strong Friendship
+-- https://leetcode.com/problems/strong-friendship/
+
+
+-- get a friend list for all user so it will be easier to join
+WITH friends AS (
+    SELECT user1_id AS user, user2_id AS friend FROM Friendship 
+    UNION ALL 
+    select user2_id AS user, user1_id AS friend FROM Friendship 
+), 
+-- join to get user1_id, user2_id, user1_friends, user2_friends
+common_friend AS(
+SELECT f.user1_id, f.user2_id, 
+     f1.friend AS user1_friends, f2.friend AS user2_friends
+    
+FROM friendship f, friends f1, friends f2
+WHERE f.user1_id = f1.user  # user1's information
+AND f.user2_id = f2.user    # user2's information
+AND f1.friend = f2.friend  # common friend (user1's friend = user2's friend)
+)
+-- count>=3  (at least three common friend) to get strong friendship
+SELECT user1_id, user2_id, COUNT(*) as common_friend
+from common_friend
+
+GROUP BY user1_id, user2_id
+HAVING COUNT(*) >= 3
 ----------------------------------------------------------------------------------------
--- 
+-- Running Total for Different Genders
+-- https://leetcode.com/problems/running-total-for-different-genders/
+
+SELECT gender, day,
+        SUM(score_points) OVER(PARTITION BY GENDER ORDER BY day) AS total
+FROM scores
+ORDER BY gender, day
 ----------------------------------------------------------------------------------------
--- 
+-- Number of Trusted Contacts of a Customer
+-- https://leetcode.com/problems/number-of-trusted-contacts-of-a-customer/
+
+
+WITH contact_count AS (
+                    SELECT customer_id, customer_name,
+                    COUNT(contact_name) AS contacts_cnt
+                    FROM customers
+                    LEFT JOIN contacts 
+                    ON customer_id = user_id
+                    GROUP BY customer_id),
+trusted_contact AS (SELECT user_id, COUNT(contact_name) AS trusted_contacts_cnt
+                    FROM contacts
+                 WHERE contact_name IN (SELECT customer_name FROM customers)
+                   GROUP BY user_id)
+SELECT invoice_id, c.customer_name,
+    price, IFNULL(contacts_cnt,0) AS contacts_cnt,
+    IFNULL(trusted_contacts_cnt,0) AS trusted_contacts_cnt
+FROM invoices i
+
+LEFT JOIN contact_count c
+ON  i.user_id = c.customer_id
+
+LEFT JOIN  trusted_contact t
+ON i.user_id = t.user_id
+
+ORDER BY invoice_id
