@@ -135,7 +135,8 @@ results12 =
 results12.forEach(printjson)
 print('\n')
 /*
-Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants which contain 'Wil' as first three letters for its name. 
+Write a MongoDB query to find the restaurant Id, name, borough and cuisine for those restaurants 
+which contain 'Wil' as first three letters for its name. 
 */
 print('results13')
 results13 =  db.restaurants.find(
