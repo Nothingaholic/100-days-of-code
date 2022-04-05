@@ -3,4 +3,4 @@
     One problem everyday for 100 days
 
 ***Some notes:***   
-    - ER Diagram and SQL Exercises are diagram and PostgreSQL database for xx_SQLexercies.sql (Source: Database 115)
+    -Day 36 to 42: SQL Exercises database from Database 115 source. 
