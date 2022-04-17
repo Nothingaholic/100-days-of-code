@@ -65,6 +65,8 @@ ORDER BY user_id
 
 
 -- SELECT COUNT(DISTINCT user1) FROM facebook_friends
+
+
 ----------------------------------------------------------------------------------------  
 -- Marketing Campaign Success [Advanced]
 -- https://platform.stratascratch.com/coding/514-marketing-campaign-success-advanced?python=
