@@ -38,7 +38,7 @@ SELECT
 SELECT DISTINCT viewer_id as id
 FROM views
 GROUP BY viewer_id, view_date
-HAVING COUNT(DISTINCT) article_id) > 1 
+HAVING COUNT(DISTINCT article_id) > 1 
 ----------------------------------------------------------------------------------------  
 -- Product Price at a Given Date
 -- https://leetcode.com/problems/product-price-at-a-given-date/
