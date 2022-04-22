@@ -95,3 +95,4 @@ WITH info AS ( SELECT
 SELECT customer_id, product_id, product_name
 FROM info
 WHERE rnk = 1
+
